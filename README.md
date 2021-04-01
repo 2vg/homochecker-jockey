@@ -22,7 +22,7 @@ homochecker-rsが起動されると、まず自己証明書をルートにイン
 二つ目は、MITMプロキシーです。</br>
 homochecker-rsの目玉機能でもあり、MITMプロキシーのおかげであなたがHTTPリクエストをする際にヘッダーのUser-Agentを `Homozilla/5.0 (Checker/1.14.514; homOSeX 8.10)` へ強制的に上書きします。</br>
 
-更なる新機能の搭載を予定しています！</br>
+現在のhomochecker-rsでは、証明書のルートへのインストールと、User-Agentの書き換えしか行っていませんが、更なる新機能の搭載を予定しています！</br>
 
 ## Usage
 バイナリは配布しません。コンパイルにはRustのNightlyが必要です。</br>
