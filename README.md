@@ -3,7 +3,7 @@ HomoChecker Native on Rust
 
 > お前も...ホモなんだろ...？
 
-homochecker-rsは、[chitoku-k/HomoChecker](https://github.com/chitoku-k/HomoChecker)をオマージュして作られた、Windowsで動く~~マルウェア~~ホモかどうかをチェックするツールです。</br>
+homochecker-rsは、[chitoku-k/HomoChecker](https://github.com/chitoku-k/HomoChecker)をオマージュして作られた、Windowsで動く~~☣️マルウェア☣️~~ホモかどうかをチェックするツールです。</br>
 
 ## Disclaimer
 **Code samples are provided for educational purposes. Adequate defenses can only be built by researching attack techniques available to malicious actors. Using this code against target systems without prior permission is illegal in most jurisdictions. The authors are not liable for any damages from misuse of this information or code**.</br>
@@ -11,7 +11,8 @@ homochecker-rsは、[chitoku-k/HomoChecker](https://github.com/chitoku-k/HomoChe
 自己責任で使用してください。</br>
 
 ## Details
-
+**⚠️ Windows意外では動作しません。**</br>
+</br>
 homochecker-rsでは、2つの重要なセキュリティメソッドが使用されています。</br>
 一つ目は、UAC特権昇格です。</br>
 homochecker-rsが起動されると、まず自己証明書をルートにインストールする処理が始まります。</br>
