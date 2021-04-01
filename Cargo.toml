@@ -1,5 +1,5 @@
 [package]
-name = "homochecker-rs"
+name = "homochecker-jockey"
 version = "0.1.0"
 authors = ["uru <mail@nyaa.gg>"]
 edition = "2018"
