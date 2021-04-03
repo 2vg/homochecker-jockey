@@ -1,24 +1,23 @@
-extern crate homochecker_rs;
+extern crate homochecker_jockey;
 
 use anyhow::*;
 use argh::FromArgs;
-use third_wheel::*;
-use homochecker_rs::*;
+use async_std::task;
+use homochecker_jockey::*;
 
 #[derive(FromArgs)]
 /// Are you homo?
 struct Args {
     /// no! im not homo!
     #[argh(switch)]
-    im_not_homo: bool
+    im_not_homo: bool,
 }
 
-#[tokio::main]
-async fn main() -> Result<()> {
+fn main() -> Result<()> {
     let args = argh::from_env::<Args>();
     if args.im_not_homo {
         println!("ホモは嘘つき！よってお前はホモだ！");
-        im_homo().await?;
+        task::block_on(im_homo())?;
     } else {
         im_not_homo()?;
     }

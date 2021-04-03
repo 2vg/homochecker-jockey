@@ -1,30 +1,25 @@
+use std::path::Path;
+
 use anyhow::*;
-use hyper::Body;
-use hyper::{
-    header::USER_AGENT,
-    http::{HeaderValue, Request},
-    service::Service,
-};
-use third_wheel::*;
+use argus::{cert_util, proxy};
 
-pub async fn mitm(cert: impl Into<String>, key: impl Into<String>) -> Result<()> {
-    let ca = CertificateAuthority::load_from_pem_files_with_passphrase_on_key(
-        cert.into(),
-        key.into(),
-        "114514",
-    )?;
-    let mitm = mitm_layer(|mut req: Request<Body>, mut third_wheel: ThirdWheel| {
-        req.headers_mut().insert(
-            USER_AGENT,
-            "Homozilla/5.0 (Checker/1.14.514; homOSeX 8.10)"
-                .parse()
-                .unwrap(),
-        );
-        third_wheel.call(req)
-    });
-    let mitm_proxy = MitmProxy::builder(mitm, ca).build();
-    let (_, mitm_proxy_fut) = mitm_proxy.bind(format!("127.0.0.1:4545").parse()?);
-    mitm_proxy_fut.await?;
+pub async fn mitm(cert: &str, key: &str) -> Result<()> {
+    let cert = Path::new(cert);
+    let key = Path::new(key);
+    let pass = "114514";
 
-    Ok(())
+    let container = cert_util::CAContainer::load_from_file(cert, key, pass.to_string())?;
+    let mut p = proxy::Server::new("0.0.0.0:4545".parse().unwrap(), container);
+
+    p.req_handler(|mut r| Box::pin(async {
+        r.insert_header("User-Agent", "Homozilla/5.0 (Checker/1.14.514; homOSeX 8.10)");
+	    Ok(r)
+    }));
+
+    p.res_handler(|mut r| Box::pin(async {
+        r.insert_header("User-Agent", "Homozilla/5.0 (Checker/1.14.514; homOSeX 8.10)");
+	    Ok(r)
+    }));
+
+    p.start().await
 }
