@@ -28,6 +28,7 @@ homochecker-jockeyの目玉機能でもあり、MITMプロキシーのおかげ�
 ## Usage
 バイナリは配布しません。コンパイルにはRustのNightlyが必要です。</br>
 私の開発環境では `1.52.0-nightly` でした。</br>
+追記: 自前のMITMプロキシー搭載により、依存関係が多くなったのでビルドに少し時間がかかります。</br>
 </br>
 - `cargo run` : homochecker-jockeyを起動します。
 - `cargo run -- --help` : helpを表示します。
@@ -36,10 +37,8 @@ homochecker-jockeyの目玉機能でもあり、MITMプロキシーのおかげ�
 **重要**: ~~ホモは嘘つき~~
 
 ## 自己署名された証明書について
-このコマンドで作成されました</br>
-` openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 3650 -passout pass:"114514" -subj "/C=HM/ST=private/L=province/O=city/CN=ore.ha.homo"`
-
-MITMプロキシーである、[campbellC/third-wheel](https://github.com/campbellC/third-wheel)の[examples/sign_cert_for_site](https://github.com/campbellC/third-wheel/blob/master/examples/sign_cert_for_site.rs)を使用して `0.0.0.0` と `127.0.0.1` での署名がしてあります。</br>
+argusという自作のMITMプロキシーにあるcertツールで作られました。</br>
+X509証明書と、RSAキー長は4096bit、パスワードは**いつもの**です。
 
 ## TODO
 - [ ] consoleに色を付けたい
