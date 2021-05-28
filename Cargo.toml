@@ -13,3 +13,5 @@ winapi = { version = "0.3.9", features = ["wininet"] }
 yura = { git = "https://github.com/2vg/blackcat-rs", package = "yura" }
 argus = { git = "https://github.com/2vg/blackcat-rs", package = "argus" }
 async-std = "1.9.0"
+url = "2.2.1"
+http-types = "2.10.0"

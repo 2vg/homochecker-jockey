@@ -1,5 +1,3 @@
-extern crate homochecker_jockey;
-
 use anyhow::*;
 use argh::FromArgs;
 use async_std::task;
